@@ -1,0 +1,103 @@
+:root {
+    --bs-primary: #0075C9;
+    --bs-blue: #0075C9;
+    --bs-body-color: #000;
+    --bs-dark-rgb:0,0,0;
+    --nav-color: #FFF;
+    --nav-active-color: #fee123;
+    /* --bs-dark-rgb:0,117,201; */
+}
+
+#logo {
+    display: block;
+    width: 99px;
+    height: 36px;
+    font-size: 0;
+    /* background-image: url('../img/logo.svg'); */
+    /* background-image: url(https://branch.io/img/logo-dark.svg); */
+    background-image: url(https://branch.io/img/logo-white.svg);
+    background-repeat: no-repeat;
+}
+
+div.carousel-caption {
+    right: 0;
+    left: 50%;
+    padding-right: 2%;
+    text-align: right;
+}
+
+.navbar-dark .navbar-nav .active a.nav-link {
+    color: var(--nav-active-color) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+    color: var(--nav-active-color) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: var(--nav-color) !important;
+}
+
+
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700);
+
+@font-face {
+    font-family: 'proxima';
+    src: url('../fonts/proxima.eot');
+    src: url('../fonts/proxima.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/proxima.woff') format('woff'),
+         url('../fonts/proxima.ttf') format('truetype'),
+         url('../fonts/proxima.svg#proxima_nova_rgregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #f0f0f0;
+	background: url('../img/grain.jpg') repeat;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 18px;
+}
+p { 
+	font-family: 'proxima', serif;
+	line-height: 1.5;
+}
+
+.btn {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* XS */
+@media (max-width: 575.98px) {
+
+}
+
+/* SM */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    
+}
+
+/* MD */
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+}
+
+/* LG */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+}
+/* XL */
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+
+}
+
+/* XXL */
+@media (min-width: 1400px) {
+
+}
+
+
+
+
