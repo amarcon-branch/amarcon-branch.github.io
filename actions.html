@@ -17,6 +17,44 @@
       (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
       // init Branch
       branch.init('key_live_eiZUu5dESuu7ZI4yj9lxWogkuEbPZXQl');
+
+      function userRegistration(UserID) {
+        var event_and_custom_data = {
+          "transaction_id": "tras_Id_1234",
+          "description": "Preferred purchase",
+          "registration_id": UserID
+        };
+
+        var customer_event_alias = "my custom registration alias";
+        
+        //log user registration event
+        branch.logEvent("COMPLETE_REGISTRATION", event_and_custom_data, customer_event_alias, function(err) { console.log(err); });
+        alert('User Registered: ' + UserID);
+
+      }
+
+      function login(UserID) {
+        //set user identity with Branch
+        branch.setIdentity(UserID, function (err, data) {console.log(err, data);});
+        alert('User Logged In: ' + UserID);
+      }
+
+      function logout() {
+        branch.logout(function (err, data) {console.log(err, data);});
+        alert('User Logged Out');
+      }
+
+      function disableBranchTracking(status) {
+
+        branch.disableTracking(status);
+
+        if (status === true) {
+          alert('Tracking Disabled');
+        } else {
+          alert('Tracking Enabled');
+        }
+      }
+
     </script>
 
   </head>
@@ -49,51 +87,64 @@
           </nav>
           <div class="row justify-content-around">
             <div class="col-12 gy-3">
-              <h3>Emulate User Actions</h3>
+              <h3>Common Branch Events</h3>
               </div>
           </div>
           <div class="row justify-content-around">
             <div class="col-12 col-md-6 gy-3">
-              <div class="mb-3">
-                <label for="userIDInput" class="form-label">User ID</label>
-                <input type="text" class="form-control" id="userIDInput" placeholder="1234">
-              </div>
-              <div class="mb-3">
-                <label for="emailInput" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+              <div class="row">
+                <div class="col-12">
+                  <label class="form-label">Lifecycle Events  <a target="_blank" href="https://help.branch.io/developers-hub/docs/web-advanced-features#lifecycle-event"><i class="bi bi-info-circle"></i></a></label>
+                </div>
+                <div class="col-6 gy-3">
+                  <input type="text" class="form-control" id="userIDInput" placeholder="UserID">
+                </div>
+                <div class="col-6 gy-3">
+                  <button class="btn btn-outline-dark" type="button" onclick="userRegistration(userIDInput.value)">Register</button>
+                </div>
+                <div class="col-6 gy-3">
+                  <button class="btn btn-outline-dark" type="button" onclick="login(userIDInput.value)">Login</button>
+                </div>
+                <div class="col-6 gy-3">
+                  <button class="btn btn-outline-dark" type="button" onclick="logout()">Logout</button>
+                </div>
               </div>
               <div class="row">
-                <div class="col-6">
-                  <button class="btn btn-outline-dark" type="button">Login</button>
+                <div class="col-12 gy-5">
+                  <label class="form-label">Content Events</label>
                 </div>
-                <div class="col-6">
-                  <button class="btn btn-outline-dark" type="button">Logout</button>
+                <div class="col-6 gy-3">
+                  <button class="btn btn-outline-dark" type="button">Like Product</button>
+                </div>
+                <div class="col-6 gy-3">
+                  <button class="btn btn-outline-dark" type="button">Share Product</button>
+                </div>
+                <div class="col-6 gy-3">
+                  <button class="btn btn-outline-dark" type="button">Abandoned Cart</button>
                 </div>
               </div>
             </div>
             <div class="col-12 col-md-6 gy-3">
               <div class="row">
                 <div class="col-12">
-                  <label class="form-label">Sample Website Actions</label>
-                </div>
-                <div class="col-6">
-                  <button class="btn btn-outline-dark" type="button">Online Registration</button>
-                </div>
-                <div class="col-6">
-                  <button class="btn btn-outline-dark" type="button">Share Product Link</button>
+                  <label class="form-label">GDPR Compliance <a target="_blank" href="https://help.branch.io/developers-hub/docs/web-advanced-features#enable--disable-user-tracking"><i class="bi bi-info-circle"></i></a></label>
+                  
                 </div>
                 <div class="col-6 gy-3">
-                  <button class="btn btn-outline-dark" type="button">Abandoned Cart</button>
+                  <button class="btn btn-outline-dark" type="button" onclick="disableBranchTracking(false)">Enable Tracking</button>
+                </div>
+                <div class="col-6 gy-3">
+                  <button class="btn btn-outline-dark" type="button" onclick="disableBranchTracking(true)">Do Not Track</button>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12 gy-3">
                   <label class="form-label">Sample Email Actions</label>
                 </div>
-                <div class="col-6">
+                <div class="col-6 gy-3">
                   <button class="btn btn-outline-dark" type="button">Newsletter Subscribe</button>
                 </div>
-                <div class="col-6">
+                <div class="col-6 gy-3">
                   <button class="btn btn-outline-dark" type="button">Newsletter Unsubscribe</button>
                 </div>
               </div>
@@ -101,10 +152,10 @@
                 <div class="col-12 gy-3">
                   <label class="form-label">Sample App Actions</label>
                 </div>
-                <div class="col-6">
+                <div class="col-6 gy-3">
                   <button class="btn btn-outline-dark" type="button">App Login</button>
                 </div>
-                <div class="col-6">
+                <div class="col-6 gy-3">
                   <button class="btn btn-outline-dark" type="button">Custom Action X</button>
                 </div>
               </div>
