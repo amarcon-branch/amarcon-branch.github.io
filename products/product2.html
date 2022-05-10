@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="css/style.css" rel="stylesheet" />
+    <title>Product 2 - Branch Demo</title>
+
+    <meta property="og:title" content="Product 2" />
+    <meta property="og:description" content="This is the product details page for Product 2" />
+    <meta property="og:image" content="https://amarcon-branch.github.io/img/product2.jpg" />
+    <meta property="og:type" content="product" />
+    <meta property="og:url" content="https://amarcon-branch.github.io/products/product2.html" />
+
+    <!-- Branch SDK Integration -->
+    <script>
+      // load Branch
+      (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
+      // init Branch
+      branch.init('key_live_eiZUu5dESuu7ZI4yj9lxWogkuEbPZXQl');
+    </script>
+
+    <!-- Branch Related Code -->
+    <script>
+      function cart(action, sku) {
+        var event_and_custom_data = {
+          "transaction_id": Math.random().toString(36).substr(2, 9),
+          "currency": "AUD",
+          "shipping": 10.0,
+          "description": "Added " + sku + " to cart",
+          "purchase_loc": "Camden",
+        };
+
+        if(sku === 'PROD-001') {
+          event_and_custom_data["revenue"] = 10;
+          event_and_custom_data["tax"] = 10*0.1;
+          var content_items = [
+              {
+                "$content_schema": "COMMERCE_PRODUCT",
+                "$og_title": "Product 1",
+                "$og_description": "none",
+                "$canonical_identifier": "products/PROD-001",
+                "$price": 10,
+                "$quantity": 1,
+                "$sku": "PROD-001",
+                "$product_name": "Product 1",
+                "$product_brand": "BrandX",
+                "$product_category": "APPAREL_AND_ACCESSORIES",
+                "$rating_average": 4.2,
+                "$rating_count": 36,
+                "$address_city": "Camden",
+                "$address_region": "NSW",
+                "$address_country": "AU",
+                "$address_postal_code": "2570",
+                "$latitude": -34.05,
+                "$longitude": 150.69,
+                "$condition": "NEW",
+                "$custom_fields": {"foo1":"bar1","foo2":"bar2"}
+              }
+            ];
+        } else if(sku === 'PROD-002') {
+          event_and_custom_data["revenue"] = 25;
+          event_and_custom_data["tax"] = 25*0.1;
+          var content_items = [
+              {
+                "$content_schema": "COMMERCE_PRODUCT",
+                "$og_title": "Product 2",
+                "$og_description": "none",
+                "$canonical_identifier": "products/PROD-001",
+                "$price": 25,
+                "$quantity": 1,
+                "$sku": "PROD-002",
+                "$product_name": "Product 2",
+                "$product_brand": "BrandX",
+                "$product_category": "APPAREL_AND_ACCESSORIES",
+                "$rating_average": 4.9,
+                "$rating_count": 112,
+                "$address_city": "Camden",
+                "$address_region": "NSW",
+                "$address_country": "AU",
+                "$address_postal_code": "2570",
+                "$latitude": -34.05,
+                "$longitude": 150.69,
+                "$condition": "NEW",
+                "$custom_fields": {"foo1":"bar1","foo2":"bar2"}
+              }
+            ];
+        } else if(sku === 'PROD-003') {
+          event_and_custom_data["revenue"] = 50;
+          event_and_custom_data["tax"] = 50*0.1;
+          var content_items = [
+              {
+                "$content_schema": "COMMERCE_PRODUCT",
+                "$og_title": "Product 3",
+                "$og_description": "none",
+                "$canonical_identifier": "products/PROD-003",
+                "$price": 50,
+                "$quantity": 1,
+                "$sku": "PROD-003",
+                "$product_name": "Product 3",
+                "$product_brand": "BrandX",
+                "$product_category": "ELECTRONICS",
+                "$rating_average": 4.9,
+                "$rating_count": 112,
+                "$address_city": "Camden",
+                "$address_region": "NSW",
+                "$address_country": "AU",
+                "$address_postal_code": "2570",
+                "$latitude": -34.05,
+                "$longitude": 150.69,
+                "$condition": "NEW",
+                "$custom_fields": {"foo1":"bar1","foo2":"bar2"}
+              }
+            ];
+        } else if(sku === 'PROD-004') {
+          event_and_custom_data["revenue"] = 100;
+          event_and_custom_data["tax"] = 100*0.1;
+          var content_items = [
+              {
+                "$content_schema": "COMMERCE_PRODUCT",
+                "$og_title": "Product 4",
+                "$og_description": "none",
+                "$canonical_identifier": "products/PROD-004",
+                "$price": 100,
+                "$quantity": 1,
+                "$sku": "PROD-004",
+                "$product_name": "Product 4",
+                "$product_brand": "BrandX",
+                "$product_category": "APPAREL_AND_ACCESSORIES",
+                "$rating_average": 4.9,
+                "$rating_count": 112,
+                "$address_city": "Camden",
+                "$address_region": "NSW",
+                "$address_country": "AU",
+                "$address_postal_code": "2570",
+                "$latitude": -34.05,
+                "$longitude": 150.69,
+                "$condition": "NEW",
+                "$custom_fields": {"foo1":"bar1","foo2":"bar2"}
+              }
+            ];
+        }
+        
+        var customer_event_alias = "my custom alias";
+        // Log e-commerce events with Branch - https://help.branch.io/developers-hub/docs/tracking-commerce-content-lifecycle-and-custom-events
+
+        if (action === 'add') {
+          branch.logEvent("ADD_TO_CART", event_and_custom_data, content_items, customer_event_alias);
+          alert(content_items[0].$product_name + ' added to cart!');
+        }
+        else if (action === 'buy') {
+          branch.logEvent("PURCHASE", event_and_custom_data, content_items, customer_event_alias);
+          alert(content_items[0].$product_name + ' was purchased!');
+        }
+        
+      };
+    </script>
+
+  </head>
+  <body>
+    
+    <div class="container overflow-hidden">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="../index.html"><span id="logo">Branch Demo</span></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../promotions.html">Promotions</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" aria-current="page" href="../products.html">Products</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../actions.html">Actions</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <div class="row justify-content-md-center">
+            <div class="col-6 col-md-6 gy-3">
+              <div class="card">
+                <img class="card-img-top img-thumbnail" src="../img/product2.jpg" class="img-thumbnail" alt="Product 2">
+                <div class="card-body">
+                  <h5 class="card-title">Product 2 - $25 AUD</h5>
+                  <div class="card-body">
+                    <button class="btn btn-outline-dark" type="button" onclick="cart('add','PROD-002')"><i class="bi bi-cart-fill me-1"></i>Add To Cart</button>
+                      <button class="btn btn-outline-dark" type="button" onclick="cart('buy','PROD-002')"><i class="bi bi-currency-dollar me-1"></i>Quick Buy</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+    </div>
+    
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  </body>
+</html>

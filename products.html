@@ -18,6 +18,273 @@
       // init Branch
       branch.init('key_live_eiZUu5dESuu7ZI4yj9lxWogkuEbPZXQl');
     </script>
+    <!-- Branch Related Code -->
+    <script>
+      
+      // action = add/buy to simulate adding an item to the cart vs purchasing an item
+
+      function cart(action, sku) {
+        var event_and_custom_data = {
+          "transaction_id": Math.random().toString(36).substr(2, 9),
+          "currency": "AUD",
+          "shipping": 10.0,
+          "description": "Added " + sku + " to cart",
+          "purchase_loc": "Camden",
+        };
+
+        if(sku === 'PROD-001') {
+          event_and_custom_data["revenue"] = 10;
+          event_and_custom_data["tax"] = 10*0.1;
+          var content_items = [
+              {
+                "$content_schema": "COMMERCE_PRODUCT",
+                "$og_title": "Product 1",
+                "$og_description": "none",
+                "$canonical_identifier": "products/PROD-001",
+                "$price": 10,
+                "$quantity": 1,
+                "$sku": "PROD-001",
+                "$product_name": "Product 1",
+                "$product_brand": "BrandX",
+                "$product_category": "APPAREL_AND_ACCESSORIES",
+                "$rating_average": 4.2,
+                "$rating_count": 36,
+                "$address_city": "Camden",
+                "$address_region": "NSW",
+                "$address_country": "AU",
+                "$address_postal_code": "2570",
+                "$latitude": -34.05,
+                "$longitude": 150.69,
+                "$condition": "NEW",
+                "$custom_fields": {"foo1":"bar1","foo2":"bar2"}
+              }
+            ];
+        } else if(sku === 'PROD-002') {
+          event_and_custom_data["revenue"] = 25;
+          event_and_custom_data["tax"] = 25*0.1;
+          var content_items = [
+              {
+                "$content_schema": "COMMERCE_PRODUCT",
+                "$og_title": "Product 2",
+                "$og_description": "none",
+                "$canonical_identifier": "products/PROD-001",
+                "$price": 10,
+                "$quantity": 1,
+                "$sku": "PROD-002",
+                "$product_name": "Product 2",
+                "$product_brand": "BrandX",
+                "$product_category": "APPAREL_AND_ACCESSORIES",
+                "$rating_average": 4.9,
+                "$rating_count": 112,
+                "$address_city": "Camden",
+                "$address_region": "NSW",
+                "$address_country": "AU",
+                "$address_postal_code": "2570",
+                "$latitude": -34.05,
+                "$longitude": 150.69,
+                "$condition": "NEW",
+                "$custom_fields": {"foo1":"bar1","foo2":"bar2"}
+              }
+            ];
+        } else if(sku === 'PROD-003') {
+          event_and_custom_data["revenue"] = 50;
+          event_and_custom_data["tax"] = 50*0.1;
+          var content_items = [
+              {
+                "$content_schema": "COMMERCE_PRODUCT",
+                "$og_title": "Product 3",
+                "$og_description": "none",
+                "$canonical_identifier": "products/PROD-003",
+                "$price": 10,
+                "$quantity": 1,
+                "$sku": "PROD-003",
+                "$product_name": "Product 3",
+                "$product_brand": "BrandX",
+                "$product_category": "ELECTRONICS",
+                "$rating_average": 4.9,
+                "$rating_count": 112,
+                "$address_city": "Camden",
+                "$address_region": "NSW",
+                "$address_country": "AU",
+                "$address_postal_code": "2570",
+                "$latitude": -34.05,
+                "$longitude": 150.69,
+                "$condition": "NEW",
+                "$custom_fields": {"foo1":"bar1","foo2":"bar2"}
+              }
+            ];
+        } else if(sku === 'PROD-004') {
+          event_and_custom_data["revenue"] = 100;
+          event_and_custom_data["tax"] = 100*0.1;
+          var content_items = [
+              {
+                "$content_schema": "COMMERCE_PRODUCT",
+                "$og_title": "Product 4",
+                "$og_description": "none",
+                "$canonical_identifier": "products/PROD-004",
+                "$price": 10,
+                "$quantity": 1,
+                "$sku": "PROD-004",
+                "$product_name": "Product 4",
+                "$product_brand": "BrandX",
+                "$product_category": "APPAREL_AND_ACCESSORIES",
+                "$rating_average": 4.9,
+                "$rating_count": 112,
+                "$address_city": "Camden",
+                "$address_region": "NSW",
+                "$address_country": "AU",
+                "$address_postal_code": "2570",
+                "$latitude": -34.05,
+                "$longitude": 150.69,
+                "$condition": "NEW",
+                "$custom_fields": {"foo1":"bar1","foo2":"bar2"}
+              }
+            ];
+        }
+        
+        var customer_event_alias = "my custom alias";
+        // Log e-commerce events with Branch - https://help.branch.io/developers-hub/docs/tracking-commerce-content-lifecycle-and-custom-events
+
+        if (action === 'add') {
+          branch.logEvent("ADD_TO_CART", event_and_custom_data, content_items, customer_event_alias);
+          alert(content_items[0].$product_name + ' added to cart!');
+        }
+        else if (action === 'buy') {
+          branch.logEvent("PURCHASE", event_and_custom_data, content_items, customer_event_alias);
+          alert(content_items[0].$product_name + ' was purchased!');
+        }
+        
+      };
+
+      function productview(sku) {
+        var event_and_custom_data = {
+          "transaction_id": Math.random().toString(36).substr(2, 9),
+          "currency": "AUD",
+          "shipping": 10.0,
+          "description": "Added " + sku + " to cart",
+          "purchase_loc": "Camden",
+        };
+
+        if(sku === 'PROD-001') {
+          event_and_custom_data["revenue"] = 10;
+          event_and_custom_data["tax"] = 10*0.1;
+          var content_items = [
+              {
+                "$content_schema": "COMMERCE_PRODUCT",
+                "$og_title": "Product 1",
+                "$og_description": "none",
+                "$canonical_identifier": "products/PROD-001",
+                "$price": 10,
+                "$quantity": 1,
+                "$sku": "PROD-001",
+                "$product_name": "Product 1",
+                "$product_brand": "BrandX",
+                "$product_category": "APPAREL_AND_ACCESSORIES",
+                "$rating_average": 4.2,
+                "$rating_count": 36,
+                "$address_city": "Camden",
+                "$address_region": "NSW",
+                "$address_country": "AU",
+                "$address_postal_code": "2570",
+                "$latitude": -34.05,
+                "$longitude": 150.69,
+                "$condition": "NEW",
+                "$custom_fields": {"foo1":"bar1","foo2":"bar2"}
+              }
+            ];
+        } else if(sku === 'PROD-002') {
+          event_and_custom_data["revenue"] = 25;
+          event_and_custom_data["tax"] = 25*0.1;
+          var content_items = [
+              {
+                "$content_schema": "COMMERCE_PRODUCT",
+                "$og_title": "Product 2",
+                "$og_description": "none",
+                "$canonical_identifier": "products/PROD-001",
+                "$price": 10,
+                "$quantity": 1,
+                "$sku": "PROD-002",
+                "$product_name": "Product 2",
+                "$product_brand": "BrandX",
+                "$product_category": "APPAREL_AND_ACCESSORIES",
+                "$rating_average": 4.9,
+                "$rating_count": 112,
+                "$address_city": "Camden",
+                "$address_region": "NSW",
+                "$address_country": "AU",
+                "$address_postal_code": "2570",
+                "$latitude": -34.05,
+                "$longitude": 150.69,
+                "$condition": "NEW",
+                "$custom_fields": {"foo1":"bar1","foo2":"bar2"}
+              }
+            ];
+        } else if(sku === 'PROD-003') {
+          event_and_custom_data["revenue"] = 50;
+          event_and_custom_data["tax"] = 50*0.1;
+          var content_items = [
+              {
+                "$content_schema": "COMMERCE_PRODUCT",
+                "$og_title": "Product 3",
+                "$og_description": "none",
+                "$canonical_identifier": "products/PROD-003",
+                "$price": 10,
+                "$quantity": 1,
+                "$sku": "PROD-003",
+                "$product_name": "Product 3",
+                "$product_brand": "BrandX",
+                "$product_category": "ELECTRONICS",
+                "$rating_average": 4.9,
+                "$rating_count": 112,
+                "$address_city": "Camden",
+                "$address_region": "NSW",
+                "$address_country": "AU",
+                "$address_postal_code": "2570",
+                "$latitude": -34.05,
+                "$longitude": 150.69,
+                "$condition": "NEW",
+                "$custom_fields": {"foo1":"bar1","foo2":"bar2"}
+              }
+            ];
+        } else if(sku === 'PROD-004') {
+          event_and_custom_data["revenue"] = 100;
+          event_and_custom_data["tax"] = 100*0.1;
+          var content_items = [
+              {
+                "$content_schema": "COMMERCE_PRODUCT",
+                "$og_title": "Product 4",
+                "$og_description": "none",
+                "$canonical_identifier": "products/PROD-004",
+                "$price": 10,
+                "$quantity": 1,
+                "$sku": "PROD-004",
+                "$product_name": "Product 4",
+                "$product_brand": "BrandX",
+                "$product_category": "APPAREL_AND_ACCESSORIES",
+                "$rating_average": 4.9,
+                "$rating_count": 112,
+                "$address_city": "Camden",
+                "$address_region": "NSW",
+                "$address_country": "AU",
+                "$address_postal_code": "2570",
+                "$latitude": -34.05,
+                "$longitude": 150.69,
+                "$condition": "NEW",
+                "$custom_fields": {"foo1":"bar1","foo2":"bar2"}
+              }
+            ];
+        }
+        
+        var customer_event_alias = "my custom alias";
+
+        // Log content events with Branch - https://help.branch.io/developers-hub/docs/tracking-commerce-content-lifecycle-and-custom-events#web---content
+
+        branch.logEvent("VIEW_ITEMS", event_and_custom_data, content_items, customer_event_alias);
+        alert('View ' + content_items[0].$product_name + ' details logged!');
+
+      }
+    
+    </script>
 
   </head>
   <body>
@@ -54,8 +321,9 @@
                 <div class="card-body">
                   <h5 class="card-title">Product 1 - $10 AUD</h5>
                   <div class="card-body">
-                    <button class="btn btn-outline-dark" type="button"><i class="bi bi-star me-1"></i>Save</button>
-                    <button class="btn btn-outline-dark" type="button"><i class="bi-cart-fill me-1"></i>Buy</button>
+                    <a href="products/product1.html"><button class="btn btn-outline-dark" type="button" onclick="productview('PROD-001')"><i class="bi bi-info-circle me-1"></i>More Info</button></a>
+                      <button class="btn btn-outline-dark" type="button" onclick="cart('add','PROD-001')"><i class="bi bi-cart-fill me-1"></i>Add To Cart</button>
+                      <button class="btn btn-outline-dark" type="button" onclick="cart('buy','PROD-001')"><i class="bi bi-currency-dollar me-1"></i>Quick Buy</button>
                   </div>
                 </div>
               </div>
@@ -66,8 +334,9 @@
                 <div class="card-body">
                   <h5 class="card-title">Product 2 - $25 AUD</h5>
                   <div class="card-body">
-                    <button class="btn btn-outline-dark" type="button"><i class="bi bi-star me-1"></i>Save</button>
-                    <button class="btn btn-outline-dark" type="button"><i class="bi-cart-fill me-1"></i>Buy</button>
+                    <a href="products/product2.html"><button class="btn btn-outline-dark" type="button" onclick="productview('PROD-002')"><i class="bi bi-info-circle me-1"></i>More Info</button></a>
+                      <button class="btn btn-outline-dark" type="button" onclick="cart('add','PROD-002')"><i class="bi bi-cart-fill me-1"></i>Add To Cart</button>
+                      <button class="btn btn-outline-dark" type="button" onclick="cart('buy','PROD-002')"><i class="bi bi-currency-dollar me-1"></i>Quick Buy</button>
                   </div>
                 </div>
               </div>
@@ -78,8 +347,9 @@
                 <div class="card-body">
                   <h5 class="card-title">Product 3 - $50 AUD</h5>
                   <div class="card-body">
-                    <button class="btn btn-outline-dark" type="button"><i class="bi bi-star me-1"></i>Save</button>
-                    <button class="btn btn-outline-dark" type="button"><i class="bi-cart-fill me-1"></i>Buy</button>
+                    <a href="products/product3.html"><button class="btn btn-outline-dark" type="button" onclick="productview('PROD-003')"><i class="bi bi-info-circle me-1"></i>More Info</button></a>
+                      <button class="btn btn-outline-dark" type="button" onclick="cart('add','PROD-003')"><i class="bi bi-cart-fill me-1"></i>Add To Cart</button>
+                      <button class="btn btn-outline-dark" type="button" onclick="cart('buy','PROD-003')"><i class="bi bi-currency-dollar me-1"></i>Quick Buy</button>
                   </div>
                 </div>
               </div>
@@ -90,8 +360,9 @@
                 <div class="card-body">
                   <h5 class="card-title">Product 4 - $100 AUD</h5>
                   <div class="card-body">
-                    <button class="btn btn-outline-dark" type="button"><i class="bi bi-star me-1"></i>Save</button>
-                    <button class="btn btn-outline-dark" type="button"><i class="bi-cart-fill me-1"></i>Buy</button>
+                    <a href="products/product4.html"><button class="btn btn-outline-dark" type="button" onclick="productview('PROD-004')"><i class="bi bi-info-circle me-1"></i>More Info</button></a>
+                      <button class="btn btn-outline-dark" type="button" onclick="cart('add','PROD-004')"><i class="bi bi-cart-fill me-1"></i>Add To Cart</button>
+                      <button class="btn btn-outline-dark" type="button" onclick="cart('buy','PROD-004')"><i class="bi bi-currency-dollar me-1"></i>Quick Buy</button>
                   </div>
                 </div>
               </div>
