@@ -36,6 +36,14 @@
       function login(UserID) {
         //set user identity with Branch
         branch.setIdentity(UserID, function (err, data) {console.log(err, data);});
+        var event_and_custom_data = {
+          "login_id": UserID
+        };
+
+        var customer_event_alias = "my custom login alias";
+        
+        //log user registration event
+        branch.logEvent("LOGIN", event_and_custom_data, customer_event_alias, function(err) { console.log(err); });
         alert('User Logged In: ' + UserID);
       }
 
